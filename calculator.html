@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <style>
+ .container {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 75vh;
+ background-color: rgb(255, 255, 255);
+ }
+ h1 {
+ color: black;
+ font-size: 45px;
+ }
+ .calculator {
+ border: 2px solid #000000;
+ border-radius: 5px;
+ background-color: black;
+ margin-top: 50px;
+ padding: 10px;
+ }
+ .row {
+ display: flex;
+ }
+ .button {
+ width: 60px;
+ height: 50px;
+ margin: 5px;
+ font-size: 16px;
+ background-color: rgb(173, 169, 169);
+ }
+ .textview {
+ width: 397px;
+ height: 40px;
+ margin: 5px;
+ font-size: 20px;
+ padding: 5px;
+ background-color: rgb(212, 255, 241);
+ }
+ </style>
+</head>
+<body>
+ <h1 align="center">Simple Scientific Calculator</h1>
+ <div class="container">
+ <div class="calculator">
+ <input class="textview" id="textview" readonly>
+ <div class="row">
+ <input type="button" value="1" class="button" onclick="insert(1)" style="backgroundcolor: rgb(173, 169, 169);">
+ <input type="button" value="2" class="button" onclick="insert(2)">
+ <input type="button" value="3" class="button" onclick="insert(3)">
+ <input type="button" value="C" class="button" onclick="clean()" style="background-color: rgb(243, 144, 236);">
+ <input type="button" value="←" class="button" onclick="back()" style="backgroundcolor: rgb(243, 144, 236);">
+ <input type="button" value="=" class="button" onclick="equal()" style="background-color: rgb(243, 144, 236);">
+ </div>
+ <div class="row">
+ <input type="button" value="4" class="button" onclick="insert(4)">
+ <input type="button" value="5" class="button" onclick="insert(5)">
+ <input type="button" value="6" class="button" onclick="insert(6)">
+ <input type="button" value="-" class="button" onclick="insert('-')">
+ <input type="button" value="%" class="button" onclick="insert('%')">
+ <input type="button" value="cos" class="button" onclick="trig('cos')">
+ </div>
+ <div class="row">
+ <input type="button" value="7" class="button" onclick="insert(7)">
+ <input type="button" value="8" class="button" onclick="insert(8)">
+ <input type="button" value="9" class="button" onclick="insert(9)">
+ <input type="button" value="*" class="button" onclick="insert('*')">
+ <input type="button" value="!" class="button" onclick="factorial()">
+ <input type="button" value="sin" class="button" onclick="trig('sin')">
+ </div>
+ <div class="row">
+ <input type="button" value="." class="button" onclick="insert('.')">
+ <input type="button" value="0" class="button" onclick="insert(0)">
+ <input type="button" value="," class="button" onclick="insert(,)">
+ <input type="button" value="+" class="button" onclick="insert('+')">
+ <input type="button" value="/" class="button" onclick="insert('/')">
+ <input type="button" value="tan" class="button" onclick="trig('tan')">
+ </div>
+ <div class="row">
+ <input type="button" value="E" class="button" onclick="insert(Math.E)">
+ <input type="button" value="π" class="button" onclick="insert(Math.PI)">
+ <input type="button" value="x^y" class="button" onclick="insert('^')">
+ <input type="button" value="(" class="button" onclick="insert('(')">
+ <input type="button" value=")" class="button" onclick="insert(')')">
+ <input type="button" value="log" class="button" onclick="log()">
+ </div>
+ <div class="row">
+ <input type="button" value="sqrt" class="button" onclick="sqrt()">
+ <input type="button" value="LN2" class="button" onclick="insert(Math.LN2)">
+ <input type="button" value="LN10" class="button" onclick="insert(Math.LN10)">
+ <input type="button" value="log2E" class="button" onclick="insert(Math.LOG2E)">
+ <input type="button" value="log10E" class="button" onclick="insert(Math.LOG10E)">
+ <input type="button" value="EXP" class="button" onclick="insert('exp')">
+ </div>
+ </div>
+ </div>
+ <script type="text/javascript">
+ function insert(num) {
+ document.getElementById('textview').value += num;
+ }
+ function clean() {
+ document.getElementById('textview').value = "";
+ }
+ function back() {
+ var exp = document.getElementById('textview').value;
+ document.getElementById('textview').value = exp.substring(0, exp.length - 1);
+ }
+ function equal() {
+ var exp = document.getElementById('textview').value;
+ if (exp) {
+ document.getElementById('textview').value = eval(exp);
+ }
+ }
+ function trig(func) {
+ var exp = document.getElementById('textview').value;
+ document.getElementById('textview').value = Math[func](eval(exp));
+ }
+ function factorial() {
+ var exp = document.getElementById('textview').value;
+ var result = 1;
+ for (var i = 1; i <= eval(exp); i++) {
+ result *= i;
+ }
+ document.getElementById('textview').value = result;
+ }
+ function sqrt() {
+ var exp = document.getElementById('textview').value;
+ document.getElementById('textview').value = Math.sqrt(eval(exp));
+ }
+ function log() {
+ var exp = document.getElementById('textview').value;
+ document.getElementById('textview').value = Math.log(eval(exp));
+ }
+ </script>
+</body>
+</html>
